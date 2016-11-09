@@ -2,8 +2,9 @@
 
 // Require index.html so it gets copied to dist
 require('./index.html');
+require('./all.scss');
 
-var Elm = require('./Golfstats.elm');
+var Elm = require('./Main.elm');
 var mountNode = document.getElementById('main');
 
 // .embed() can take an optional second argument.

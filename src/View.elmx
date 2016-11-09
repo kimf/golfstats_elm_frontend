@@ -1,0 +1,19 @@
+module View exposing (..)
+
+import Html exposing (Html, div, text)
+import Html.App
+import Html.Attributes
+import Messages exposing (Msg(..))
+import Models exposing (Model)
+import Scorecards.List
+
+view : Model -> Html Msg
+view model =
+  <div class="container">
+    {page model}
+  </div>
+
+
+page : Model -> Html Msg
+page model =
+  Html.App.map ScorecardsMsg (Scorecards.List.view model.scorecards)

@@ -1,0 +1,20 @@
+$bg: #f7f9fe;
+$bg-alt: #f5f9fa;
+
+$yellow: #f6e12f;
+$green: #699901;
+$gray: #393c3d;
+$pink: #f09;
+$black: #333;
+
+//'TradeGothicW01-BoldCn20_675334','Impact',sans-serif
+
+html { box-sizing: border-box; }
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  background: $bg;
+}

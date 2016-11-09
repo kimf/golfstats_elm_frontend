@@ -13,12 +13,25 @@ module.exports = {
   },
 
   module: {
+    preLoaders: [
+      {
+        // Notice that the preloader actually reads .elm files looking for dependencies to be compiled from elmx
+        test: /\.elm$/,
+        loader: 'elmx-webpack-preloader',
+        include: [path.resolve(__dirname, "src")],
+        query: {
+          sourceDirectories: ['src'],
+          outputDirectory: '.tmp'
+        }
+      }
+    ],
     loaders: [
       {
-        test: /\.(css|scss)$/,
+        test: /\.scss$/,
         loaders: [
           'style-loader',
           'css-loader',
+          'sass-loader'
         ]
       },
       {
@@ -29,6 +42,7 @@ module.exports = {
       {
         test:    /\.elm$/,
         exclude: [/elm-stuff/, /node_modules/],
+        include: [path.resolve(__dirname, "src"), path.resolve(__dirname, ".tmp")],
         loader:  'elm-webpack',
       },
       {
@@ -38,7 +52,7 @@ module.exports = {
       {
         test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         loader: 'file-loader',
-      },
+      }
     ],
 
     noParse: /\.elm$/,

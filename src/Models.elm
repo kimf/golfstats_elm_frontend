@@ -1,5 +1,14 @@
 module Models exposing (..)
 
+import Scorecards.Models exposing (Scorecard)
+
 
 type alias Model =
-    String
+    { scorecards : List Scorecard
+    }
+
+
+initialModel : Model
+initialModel =
+    { scorecards = []
+    }

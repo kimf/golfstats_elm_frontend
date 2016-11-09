@@ -1,5 +1,7 @@
 module Messages exposing (..)
 
+import Scorecards.Messages
+
 
 type Msg
-    = NoOp
+    = ScorecardsMsg Scorecards.Messages.Msg
