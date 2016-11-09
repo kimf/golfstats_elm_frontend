@@ -1,54 +1,51 @@
 module Scorecards.List exposing (..)
 
-import List exposing (map)
+import List exposing (map, sortWith, sortBy)
 import Html exposing (..)
 import Html.Attributes
+import Html.Events exposing (onClick)
 import Html.Keyed
-
 import Scorecards.Messages exposing (..)
 import Scorecards.Models exposing (Scorecard)
+import Date.Format exposing (format)
+
 
 view : List Scorecard -> Html Msg
 view scorecards =
-  <div class="scorecards container">
-    {filter scorecards}
-    {list scorecards}
-  </div>
-
-
-filter : List Scorecard -> Html Msg
-filter scorecards =
-  <div class="filter">
-    <h2>Scorecards</h2>
-  </div>
+    <div class="scorecards container">
+        <div class="filter">
+            <h2>Filters</h2>
+        </div>
+        {list scorecards }
+    </div>
 
 
 list : List Scorecard -> Html Msg
 list scorecards =
-  let
-    list = map scorecardRow scorecards
-  in
-    <table>
-      <thead>
-        <tr>
-          <th>Id</th>
-          <th>Course</th>
-          <th>SOP</th>
-          </tr>
-      </thead>
-      <tbody keyed>
-        {:list}
-      </tbody>
-    </table>
+    let
+        list = map scorecardRow scorecards
+    in
+      <table cellspacing="0" cellpadding="0">
+          <thead>
+              <tr>
+                  <th>Date</th>
+                  <th>Course</th>
+                  <th>SOP</th>
+              </tr>
+          </thead>
+          <tbody keyed>
+              {:list}
+          </tbody>
+      </table>
 
 
 scorecardRow : Scorecard -> ( a, Html b )
 scorecardRow scorecard =
-  let
-    scorecard = scorecard
-  in
-    <tr key={scorecard.id}>
-      <td>{=scorecard.id}</td>
-      <td>{=scorecard.course}</td>
-      <td>{=scorecard.strokes_over_par}</td>
-    </tr>
+    let
+        scorecard = scorecard
+    in
+        <tr key={scorecard.id}>
+            <td>{= (format "%d %b %Y" scorecard.date)}</td>
+            <td>{=scorecard.course}</td>
+            <td>{=scorecard.strokes}</td>
+        </tr>
