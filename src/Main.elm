@@ -1,6 +1,6 @@
 module Main exposing (..)
 
-import Html.App
+import Html
 import Messages exposing (Msg(..))
 import Models exposing (Model, initialModel)
 import View exposing (view)
@@ -22,8 +22,9 @@ subscriptions model =
 -- MAIN
 
 
+main : Program Never Model Msg
 main =
-    Html.App.program
+    Html.program
         { init = init
         , view = view
         , update = update

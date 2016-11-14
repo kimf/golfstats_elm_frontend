@@ -1,21 +1,10 @@
 module Scorecards.Models exposing (..)
 
-import Array exposing (Array)
 import Date exposing (Date)
 
 
-type GameStatus
-    = Unknown
-    | NotStarted
-    | Started
-
-
-type alias ScorecardId =
-    Int
-
-
 type alias Scorecard =
-    { id : ScorecardId
+    { id : Int
     , date : Date
     , course : String
     , golfshot_id : String
