@@ -1,7 +1,9 @@
 module Messages exposing (..)
 
-import Scorecards.Messages
+import Http
+import Models exposing (Scorecard)
 
 
 type Msg
-    = ScorecardsMsg Scorecards.Messages.Msg
+    = FetchScorecards (Result Http.Error (List Scorecard))
+    | ChangeCurrentYear String

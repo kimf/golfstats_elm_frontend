@@ -1,33 +1,45 @@
 module View exposing (..)
 
-import Html exposing (Html, div, text)
-import Html.Attributes
+import Html exposing (Html, div, text, button, h1)
+import Html.Attributes exposing (..)
+import Html.Events exposing (onClick)
 import Messages exposing (Msg(..))
-import Models exposing (Model)
-import Scorecards.Models exposing (Scorecard)
-import Scorecards.List
-import Scorecards.Filter
+import Models exposing (Model, Scorecard)
+import ScorecardsList
 import List exposing (length)
 
 
 view : Model -> Html Msg
 view model =
-    if length model.scorecards > 0 then
-        Html.div [ Html.Attributes.attribute "class" "container" ]
-            [ Html.div [ Html.Attributes.attribute "class" "filters" ]
-                [ sidebar model.years model.currentYear ]
-            , Html.div [ Html.Attributes.attribute "class" "list" ]
-                [ page model.scorecards ]
+    if length model.filteredScorecards > 0 then
+        div [ class "container" ]
+            [ h1 [] [ text model.currentYear ]
+            , sidebar model.currentYear model.years
+            , page model.filteredScorecards
             ]
     else
-        Html.div [] [ Html.text "No data loaded" ]
+        div [] [ text "No data loaded" ]
 
 
 page : List Scorecard -> Html Msg
 page scorecards =
-    Html.map ScorecardsMsg (Scorecards.List.view scorecards)
+    ScorecardsList.view scorecards
 
 
-sidebar : List Int -> String -> Html Msg
-sidebar years currentYear =
-    Html.map ScorecardsMsg (Scorecards.Filter.view years currentYear)
+sidebar : String -> List String -> Html Msg
+sidebar currentYear years =
+    let
+        buttons =
+            List.map (yearButton currentYear) years
+    in
+        div [ class "years" ] (buttons)
+
+
+yearButton : String -> String -> Html Msg
+yearButton currentYear year =
+    button
+        [ classList [ ( "active", currentYear == year ) ]
+        , onClick (ChangeCurrentYear year)
+        ]
+        [ text year
+        ]

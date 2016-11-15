@@ -1,12 +1,12 @@
-module Scorecards.Commands exposing (..)
+module Commands exposing (..)
 
 import Http
 import Array exposing (Array)
 import Json.Decode.Extra exposing (date, (|:))
 import Json.Decode exposing (Decoder, decodeValue, succeed, string, null, list, int, float, field)
 import Task
-import Scorecards.Models exposing (Scorecard)
-import Scorecards.Messages exposing (..)
+import Models exposing (Scorecard)
+import Messages exposing (..)
 
 
 fetchAll : Cmd Msg

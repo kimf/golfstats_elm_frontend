@@ -5,15 +5,15 @@ import Messages exposing (Msg(..))
 import Models exposing (Model, initialModel)
 import View exposing (view)
 import Update exposing (update)
-import Scorecards.Commands exposing (fetchAll)
+import Commands exposing (fetchAll)
 
 
 init : ( Model, Cmd Msg )
 init =
-    ( initialModel, Cmd.map ScorecardsMsg fetchAll )
+    ( initialModel, fetchAll )
 
 
-subscriptions : Model -> Sub Msg
+subscriptions : Model -> Sub msg
 subscriptions model =
     Sub.none
 
@@ -22,7 +22,6 @@ subscriptions model =
 -- MAIN
 
 
-main : Program Never Model Msg
 main =
     Html.program
         { init = init

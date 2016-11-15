@@ -68,3 +68,8 @@ uniqueYears datedList =
 listLengthAsString : List a -> String
 listLengthAsString list =
     toString (length list)
+
+
+isMatchingYear : String -> { a | date : Date.Date } -> Bool
+isMatchingYear year a =
+    (toYearString a.date) == year

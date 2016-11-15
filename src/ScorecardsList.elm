@@ -1,10 +1,9 @@
-module Scorecards.List exposing (..)
+module ScorecardsList exposing (..)
 
 import Html exposing (..)
 import Html.Attributes
-import Html.Events exposing (onClick)
-import Scorecards.Messages exposing (..)
-import Scorecards.Models exposing (Scorecard)
+import Messages exposing (..)
+import Models exposing (Scorecard)
 import Functions exposing (..)
 import String exposing (join)
 import List exposing (sortWith)
@@ -16,9 +15,9 @@ import List exposing (sortWith)
 --FIR 46%
 --AVG. PUTTS 1.84
 --AVG. GIR PUTTS 1.9
+-- view : List Scorecard -> Html Msg
 
 
-view : List Scorecard -> Html Msg
 view scorecards =
     let
         scorecardsLength =
@@ -33,7 +32,10 @@ view scorecards =
             ]
 
 
-list : List Scorecard -> Html Msg
+
+-- list : List Scorecard -> Html Msg
+
+
 list items =
     let
         scorecardItems =
@@ -54,7 +56,10 @@ list items =
             ]
 
 
-scorecardRow : Scorecard -> Html msg
+
+-- scorecardRow : Scorecard -> Html msg
+
+
 scorecardRow scorecard =
     Html.tr []
         [ Html.td [] [ Html.text (toDateString scorecard.date) ]
