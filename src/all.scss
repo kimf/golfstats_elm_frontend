@@ -53,3 +53,18 @@ td {
   padding: 5px 10px;
   border-bottom: 1px solid $gray;
 }
+
+button {
+  background: #fff;
+  border-radius: 5px;
+  border: 1px solid #000;
+  cursor: pointer;
+  margin: 0 5px 0;
+  padding: 10px 15px;
+  font-weight: bold;
+
+  &.active {
+    background: #feb;
+    border-color: $green;
+  }
+}

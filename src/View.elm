@@ -13,8 +13,7 @@ view : Model -> Html Msg
 view model =
     if length model.filteredScorecards > 0 then
         div [ class "container" ]
-            [ h1 [] [ text model.currentYear ]
-            , sidebar model.currentYear model.years
+            [ sidebar model.currentYear model.years
             , page model.filteredScorecards
             ]
     else
